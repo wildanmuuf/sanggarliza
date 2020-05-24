@@ -17,15 +17,25 @@
             if($query->rowCount() > 0){
                 $user = $query->fetch(PDO::FETCH_ASSOC);
                 $_SESSION['user_id'] = $user['user_id'];
-                if($user['role_id'] == 1) {
-                    echo "<script type='text/javascript'> document.location = 'penjual/index.php'; </script>";
-                }else if($user['role_id'] == 2) {
-                    echo "<script type='text/javascript'> document.location = 'pembeli/index.php'; </script>";
-                }else if($user['role_id'] == 3) {
-                    echo "<script type='text/javascript'> document.location = 'suplier/index.php'; </script>";
-                }else if($user['role_id'] == 4) {
-                    echo "<script type='text/javascript'> document.location = 'admin/index.php'; </script>";
+                switch($user['role_id']){
+                    case 1 :
+                        echo "<script type='text/javascript'> document.location = 'penjual/index.php'; </script>";
+                        break;
+                    case 2 :
+                        echo "<script type='text/javascript'> document.location = 'pembeli/index.php'; </script>";
+                        break;
+                    case 3 :
+                        echo "<script type='text/javascript'> document.location = 'suplier/index.php'; </script>";
+                        break;
+                    case 4 :
+                        echo "<script type='text/javascript'> document.location = 'admin/index.php'; </script>";
+                        break;
+                    default :
+                        echo "<script type='text/javascript'>alert('Modul belum dibuat!');</script>";
+                        echo "<script type='text/javascript'> document.location = 'logout.php'; </script>";
+                        break;
                 }
+                
             }else{
                 echo "<script type='text/javascript'>alert('Username/password salah');</script>";
                 print_r($query->errorInfo());
