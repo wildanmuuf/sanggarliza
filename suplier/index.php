@@ -24,7 +24,7 @@
                 echo "<h4>Anda masuk sebagai ".$user['rolename']."</h4>";
             }
         ?>
-        <br><br><a href="register.php">
+        <br><br><a href="../logout.php">
             <button>Keluar</button>
         </a>
 	</body>
